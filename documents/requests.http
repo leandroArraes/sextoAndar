@@ -8,10 +8,32 @@ Content-Type: application/json
   "caracteristicas": "3 quartos, 2 banheiros",
   "preco": "R$ 500.000,00",
   "informacoesAdicionais": "Excelente localização",
-  "fotos": ["foto1.jpg", "foto2.jpg"],
+  "fotos": ["https://projetaronline.com/wp-content/uploads/2024/02/Casa-de-Campo-em-L-com-3-quatos_01-Foto.webp", "https://projetaronline.com/wp-content/uploads/2024/02/Casa-de-Campo-em-L-com-3-quatos_12-Foto.webp"],
   "usuarioId": 1,
   "status": 1
 }
-###
+
+### buscar por id
+GET http://localhost:3500/imovel/1
+Content-Type: application/json
+
+### Listar todos por id do usuário
+GET http://localhost:3500/imovel/user/1
+Content-Type: application/json
+
+### Listar todos
 GET http://localhost:3500/imovel
+Content-Type: application/json
+
+
+### Update
+PATCH http://localhost:3500/imovel/1
+Content-Type: application/json
+
+{
+  "tipoImovel": "condominio"
+}
+
+### 
+DELETE http://localhost:3500/imovel/1
 Content-Type: application/json

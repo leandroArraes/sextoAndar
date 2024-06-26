@@ -1,26 +1,80 @@
 import { Injectable } from '@nestjs/common';
 import { CreateImovelDto } from './dto/create-imovel.dto';
 import { UpdateImovelDto } from './dto/update-imovel.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class ImovelService {
-  create(createImovelDto: CreateImovelDto) {
-    return 'This action adds a new imovel';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createImovelDto: CreateImovelDto) {
+    const response = await this.prisma.imovel.create({
+      data: createImovelDto,
+    });
+    if (!response) {
+      throw new NotFoundException('Erro ao criar um novo imovel');
+    }
+    return response;
   }
 
-  findAll() {
-    return `This action returns all imovel`;
+  async findAll() {
+    const response = await this.prisma.imovel.findMany();
+    if (!response) {
+      throw new NotFoundException('Erro ao buscar todos imoveis');
+    }
+    return response;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} imovel`;
+  async findAllByUser(usuarioId: number) {
+    const response = await this.prisma.imovel.findMany({
+      where: {
+        usuarioId: usuarioId,
+      },
+    });
+    if (!response) {
+      throw new NotFoundException('Erro ao buscar todos imoveis de um usuário');
+    }
+    return response;
   }
 
-  update(id: number, updateImovelDto: UpdateImovelDto) {
-    return `This action updates a #${id} imovel`;
+  async findOne(id: number) {
+    const response = await this.prisma.imovel.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!response) {
+      throw new NotFoundException('imoveil não encontrado');
+    }
+    return response;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} imovel`;
+  async update(id: number, updateImovelDto: UpdateImovelDto) {
+    const response = await this.prisma.imovel.update({
+      where: {
+        id: id,
+      },
+      data: updateImovelDto,
+    });
+    if (!response) {
+      throw new NotFoundException('erro ao editar imovel');
+    }
+    return response;
+  }
+
+  async remove(id: number) {
+    const response = await this.prisma.imovel.update({
+      where: {
+        id: id,
+      },
+      data: {
+        status: -1,
+      },
+    });
+    if (!response) {
+      throw new NotFoundException('erro ao editar imovel');
+    }
+    return response;
   }
 }

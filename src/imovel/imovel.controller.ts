@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+
 import { ImovelService } from './imovel.service';
 import { CreateImovelDto } from './dto/create-imovel.dto';
 import { UpdateImovelDto } from './dto/update-imovel.dto';
@@ -15,6 +24,11 @@ export class ImovelController {
   @Get()
   findAll() {
     return this.imovelService.findAll();
+  }
+
+  @Get('user/:id')
+  findAllByUser(@Param('id') id: string) {
+    return this.imovelService.findAllByUser(+id);
   }
 
   @Get(':id')
