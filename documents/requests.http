@@ -1,7 +1,17 @@
 ###
-POST http://localhost:3000/comentario
+POST http://localhost:3500/imovel
 Content-Type: application/json
 
 {
-    
+  "tipoImovel": "Casa",
+  "endereco": "Rua das Flores, 123",
+  "caracteristicas": "3 quartos, 2 banheiros",
+  "preco": "R$ 500.000,00",
+  "informacoesAdicionais": "Excelente localização",
+  "fotos": ["foto1.jpg", "foto2.jpg"],
+  "usuarioId": 1,
+  "status": 1
 }
+###
+GET http://localhost:3500/imovel
+Content-Type: application/json
