@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
    "prisma:generate": "prisma generate",
-    "vercel-build": "npx prisma migrate deploy && npx prisma generate"
+   "vercel-build": "nest build && mkdir public && cp -R dist/* public/"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
