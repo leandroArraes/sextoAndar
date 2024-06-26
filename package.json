@@ -5,7 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "scripts": {
+   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -18,8 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-   "prisma:generate": "prisma generate",
-   "vercel-build": "nest build && mkdir public && cp -R dist/* public/"
+    "prisma:generate": "prisma generate",
+    "vercel-build": "nest build && if not exist public mkdir public && xcopy /E /I dist public"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
