@@ -3,8 +3,10 @@ POST http://localhost:3500/imovel
 Content-Type: application/json
 
 {
-  "tipoImovel": "Casa",
+  "tipoImovel": "Condominio",
   "endereco": "Rua das Flores, 123",
+  "latitude": "-22.91044817063489",
+  "longitude" :"-43.17330303796755",
   "caracteristicas": "3 quartos, 2 banheiros",
   "preco": "R$ 500.000,00",
   "informacoesAdicionais": "Excelente localização",
