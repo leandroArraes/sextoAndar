@@ -1,6 +1,8 @@
 import { Optional } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Imovel')
 export class CreateImovelDto {
   @ApiProperty({
     description: 'Tipo de imóvel, por exemplo, apartamento, casa, etc.',
